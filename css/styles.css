@@ -723,7 +723,7 @@ nav ul li a:hover {
 .buttons button:hover {
     background-color: aqua;
     color: #111111;
-    transform: translateY(-5px) scale(1.05,1.05);
+    transform: scale(1.05,1.05);
     border-bottom: 3px solid azure;
     transition: 0.25s;
 }
@@ -844,6 +844,13 @@ nav ul li a:hover {
     color: azure;
     font-weight: 600;
     text-align: center;
+    cursor: pointer;
+    transition: 0.3;
+}
+
+.contact__form .submit__btn:hover {
+    background-color: turquoise;
+    transform: scale(1.05, 1.05);
 }
 
 /* Contact Section CODES */
