@@ -117,36 +117,12 @@ nav ul li a:hover {
     line-height: 5.5rem;
     margin-bottom: 1.75rem;
     cursor: default;
-    animation: fade-out linear;
-    animation-timeline: view();
-    animation-range: exit -150px;
-}
-
-@keyframes fade-out {
-    to {opacity: 0}
 }
 
 .content p {
     font-size: 1.15rem;
     margin-bottom: 2rem;
     cursor: default;
-    animation: fade-out linear;
-    animation-timeline: view();
-    animation-range: exit -150px;
-}
-
-@keyframes fade-out {
-    to {opacity: 0}
-}
-
-.content .calltoaction {
-    animation: fade-out linear;
-    animation-timeline: view();
-    animation-range: exit -150px;
-}
-
-@keyframes fade-out {
-    to {opacity: 0}
 }
 
 .shape-divider-bottom {
