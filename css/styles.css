@@ -183,14 +183,6 @@ nav ul li a:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
-    scale: 0.7 0.7;
-    animation: fade-in linear forwards;
-    animation-timeline: view();
-    animation-range: entry 25%;
-}
-
-@keyframes fade-in {
-    to {scale: 1 1}
 }
 
 .services h2:after {
@@ -355,14 +347,6 @@ nav ul li a:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
-    scale: 0.7 0.7;
-    animation: fade-in linear forwards;
-    animation-timeline: view();
-    animation-range: entry 25%;
-}
-
-@keyframes fade-in {
-    to {scale: 1 1}
 }
 
 .pricing h2:after {
@@ -676,14 +660,6 @@ nav ul li a:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
-    scale: 0.7 0.7;
-    animation: fade-in linear forwards;
-    animation-timeline: view();
-    animation-range: entry 25%;
-}
-
-@keyframes fade-in {
-    to {scale: 1 1}
 }
 
 .about h2:after {
@@ -846,14 +822,6 @@ nav ul li a:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     position: relative;
-    scale: 0.7 0.7;
-    animation: fade-in linear forwards;
-    animation-timeline: view();
-    animation-range: entry 25%;
-}
-
-@keyframes fade-in {
-    to {scale: 1 1}
 }
 
 .contact h2:after {
