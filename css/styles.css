@@ -103,6 +103,7 @@ nav ul li a:hover {
     background-size: cover;
     background-position: center;
     padding: 1px 8%;
+    margin-bottom: 0;
 }
 
 .content {
@@ -164,6 +165,7 @@ nav ul li a:hover {
     height: calc(100vh+5rem);
     background-image: linear-gradient(rgba(12, 39, 72, 0.939), rgba(0, 35, 77, 0.958));
     padding: 5% 8%;
+    margin-top: 0;
 }
 
 .services {
