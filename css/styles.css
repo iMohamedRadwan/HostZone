@@ -109,6 +109,14 @@ nav ul li a:hover {
     margin-top: 14%;
     color: whitesmoke;
     max-width: 620px;
+}
+
+.content h1 {
+    font-size: 5rem;
+    font-weight: 600;
+    line-height: 5.5rem;
+    margin-bottom: 1.75rem;
+    cursor: default;
     animation: fade-out linear;
     animation-timeline: view();
     animation-range: exit -150px;
@@ -118,18 +126,27 @@ nav ul li a:hover {
     to {opacity: 0}
 }
 
-.content h1 {
-    font-size: 5rem;
-    font-weight: 600;
-    line-height: 5.5rem;
-    margin-bottom: 1.75rem;
-    cursor: default;
-}
-
 .content p {
     font-size: 1.15rem;
     margin-bottom: 2rem;
     cursor: default;
+    animation: fade-out linear;
+    animation-timeline: view();
+    animation-range: exit -150px;
+}
+
+@keyframes fade-out {
+    to {opacity: 0}
+}
+
+.content .calltoaction {
+    animation: fade-out linear;
+    animation-timeline: view();
+    animation-range: exit -150px;
+}
+
+@keyframes fade-out {
+    to {opacity: 0}
 }
 
 .shape-divider-bottom {
