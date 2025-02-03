@@ -148,8 +148,7 @@ nav ul li a:hover {
     position: relative;
     display: block;
     width: calc(100% + 10px);
-    height: 140px;
-    filter: blur(10px);
+    height: 140px
 }
 
 .shape-divider-bottom .shape-fill {
