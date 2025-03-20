@@ -133,28 +133,6 @@ nav ul li a:hover {
     cursor: default;
 }
 
-.shape-divider-bottom {
-    position: absolute;
-    bottom: -15px;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-    
-}
-
-.shape-divider-bottom svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 10px);
-    height: 140px
-}
-
-.shape-divider-bottom .shape-fill {
-    fill: #1a3453;
-}
-
 /* Hero Section CODES */
 
 /* Services Section CODES */
