@@ -1,5 +1,15 @@
 /* Main Style Defaults */
 
+:root {
+    --primary-color: mediumturquoise;
+    --primary-hover: rgb(94, 243, 238);
+    --text-light: azure;
+    --text-dark: rgba(0, 35, 77, 0.949);
+    --bg-gradient: linear-gradient(rgba(12, 39, 72, 0.939), rgba(0, 35, 77, 0.958));
+    --transition-speed: 0.6s;
+    --transition-timing: cubic-bezier(0.4, 0, 0.3, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,11 +36,20 @@ header {
     align-items: center;
     padding-left: 5%;
     padding-right: 5%;
-    background-color: #ffffff25;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     transition: all 0.5s;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+header.hide {
+    transform: translateY(-100%);
 }
 
 .navbar__logo {
@@ -39,15 +58,68 @@ header {
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
-    transition: 0.5s;
+    transition: all var(--transition-speed) var(--transition-timing);
 }
 .navbar__logo span {
-    color: mediumturquoise;
+    color: var(--primary-color);
+    transition: color var(--transition-speed) ease;
+}
+
+.navbar__logo:hover span {
+    color: var(--primary-hover);
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    gap: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+}
+
+.mobile-nav-toggle:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    nav ul {
+        position: fixed;
+        top: 5rem;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 5rem);
+        background: var(--bg-gradient);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: right var(--transition-speed) ease;
+    }
+
+    nav ul.active {
+        right: 0;
+    }
+
+    nav ul li {
+        width: auto;
+        padding: 0;
+    }
+
+    .calltoaction {
+        display: none;
+    }
 }
 
 nav ul li {
@@ -64,31 +136,60 @@ nav ul li a {
 
 }
 
+nav ul li a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color var(--transition-speed) ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
 nav ul li a:hover {
-    color: mediumturquoise;
-    padding: 10px 0;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
-    border-style: solid;
-    border-bottom-color: mediumturquoise;
+    color: var(--primary-color);
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 .calltoaction {
     display: flex;
     font-size: 1.5rem;
-    color: rgba(0, 35, 77, 0.949);
-    padding: 10px 20px;
-    font-weight: 500;   
+    color: var(--text-dark);
+    padding: 10px 25px;
+    font-weight: 500;
     border-radius: 0.35rem;
-    background-color: mediumturquoise;
-    border: 0;
+    background-color: var(--primary-color);
+    border: 2px solid transparent;
     outline: 0;
     cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-timing);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
 }
 
 .calltoaction:hover {
-    background-color: rgb(94, 243, 238);
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Header CODES */
@@ -99,7 +200,7 @@ nav ul li a:hover {
     width: 100%;
     height: 100vh;
     margin: 0;
-    background-image: linear-gradient(rgba(0, 35, 77, 0.65), rgba(0, 35, 77, 0.65)), url(../images/background.jpg);
+    background-image: linear-gradient(135deg, rgba(0, 35, 77, 0.85), rgba(12, 39, 72, 0.95)), url(../images/background.jpg);
     background-size: cover;
     background-position: center;
     padding: 1px 8%;
@@ -170,9 +271,9 @@ nav ul li a:hover {
     -webkit-text-fill-color: transparent;
     position: relative;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
 }
 
 @keyframes fade-in {
@@ -198,7 +299,7 @@ nav ul li a:hover {
     width: 8px;
     border-radius: 50%;
     background-color: mediumturquoise;
-    animation: anim 5s linear infinite;
+    animation: anim 8s ease-in-out infinite;
 }
 
 @keyframes anim {
@@ -218,6 +319,18 @@ nav ul li a:hover {
     margin-top: 5rem;
 }
 
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
 .card {
     height: 300px;
     width: 330px;
@@ -225,22 +338,35 @@ nav ul li a:hover {
     padding: 3% 8%;
     border: 0.2px solid rgba(113, 141, 178, 0.65);
     border-radius: 5px;
-    transition: 0.6s;
+    transition: all var(--transition-speed) var(--transition-timing);
     display: flex;
     align-items: center;
     flex-direction: column;
-    border-top: 1.5px;
-    border-right: 1.5px;
-    border-left: 1.5px;
-    border-style: solid;
-    border-color: mediumturquoise;
+    border: 1.5px solid var(--primary-color);
     border-bottom-width: 5px;
     position: relative;
     overflow: hidden;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
+    cursor: pointer;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+    opacity: 0;
+    transition: opacity var(--transition-speed) var(--transition-timing);
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 @keyframes fade-in {
@@ -342,9 +468,9 @@ nav ul li a:hover {
     -webkit-text-fill-color: transparent;
     position: relative;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
 }
 
 @keyframes fade-in {
@@ -370,7 +496,7 @@ nav ul li a:hover {
     width: 8px;
     border-radius: 50%;
     background-color: mediumturquoise;
-    animation: anim 5s linear infinite;
+    animation: anim 8s ease-in-out infinite;
 }
 
 @keyframes anim {
@@ -395,24 +521,39 @@ nav ul li a:hover {
     width: 320px;
     background-color: #2b507b;
     padding: 3% 8%;
-    border: 0.2px solid rgba(113, 141, 178, 0.65);
     border-radius: 10px;
-    transition: 0.6s;
+    transition: all var(--transition-speed) var(--transition-timing);
     display: flex;
     align-items: center;
     flex-direction: column;
-    border-top: 1.5px;
-    border-right: 1.5px;
-    border-left: 1.5px;
-    border-style: solid;
-    border-color: mediumturquoise;
+    border: 1.5px solid var(--primary-color);
     border-bottom-width: 5px;
     position: relative;
     overflow: hidden;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
+    backdrop-filter: blur(10px);
+}
+
+.price__card.popular {
+    transform: scale(1.05);
+    background-color: var(--primary-color);
+    border: 1px solid var(--text-light);
+}
+
+.price__card.popular::before {
+    content: 'POPULAR';
+    position: absolute;
+    top: 1.5rem;
+    right: -2rem;
+    background: var(--text-light);
+    color: var(--text-dark);
+    padding: 0.5rem 3rem;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 @keyframes fade-in {
@@ -663,9 +804,9 @@ nav ul li a:hover {
     -webkit-text-fill-color: transparent;
     position: relative;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
 }
 
 @keyframes fade-in {
@@ -691,7 +832,7 @@ nav ul li a:hover {
     width: 8px;
     border-radius: 50%;
     background-color: mediumturquoise;
-    animation: anim 5s linear infinite;
+    animation: anim 8s ease-in-out infinite;
 }
 
 
@@ -714,14 +855,41 @@ nav ul li a:hover {
     margin-top: 5%;
     margin-bottom: 5%;
     flex-wrap: wrap;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .about__content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about__img {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .about__text {
+        width: 100%;
+    }
+
+    .hero__section .content h1 {
+        font-size: 3.5rem;
+        line-height: 4rem;
+    }
+
+    .services h2, .pricing h2, .about h2 {
+        font-size: 3rem;
+    }
 }
 
 .about__content .about__text {
     width: 45%;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
 }
 
 @keyframes fade-in {
@@ -746,9 +914,9 @@ nav ul li a:hover {
     border: 0;
     outline: 0;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
 }
 
 @keyframes fade-in {
@@ -770,21 +938,33 @@ nav ul li a:hover {
 .buttons button {
     display: flex;
     flex-wrap: wrap;
-    background-color: #CAF0F8;
-    padding: 10px 15px;
+    padding: 12px 25px;
     margin-right: 1.5rem;
-    border: 0;
+    border: 2px solid transparent;
     outline: 0;
-    border-radius: 0.25rem;
+    border-radius: 8px;
     font-size: 1.25rem;
     font-weight: 500;
-    color: #03045E;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all var(--transition-speed) var(--transition-timing);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     scale: 0.7 0.7;
     animation: fade-in linear forwards;
     animation-timeline: view();
     animation-range: entry 50%;
+}
+
+.buttons .btn2 {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+}
+
+.buttons button:hover {
+    transform: translateY(-2px) scale(1.05,1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background-color: var(--primary-hover);
 }
 
 @keyframes fade-in {
@@ -833,9 +1013,9 @@ nav ul li a:hover {
     -webkit-text-fill-color: transparent;
     position: relative;
     scale: 0.7 0.7;
-    animation: fade-in linear forwards;
+    animation: fade-in 0.8s ease-out forwards;
     animation-timeline: view();
-    animation-range: entry 25%;
+    animation-range: entry 35%;
 }
 
 @keyframes fade-in {
@@ -861,7 +1041,7 @@ nav ul li a:hover {
     width: 8px;
     border-radius: 50%;
     background-color: mediumturquoise;
-    animation: anim 5s linear infinite;
+    animation: anim 8s ease-in-out infinite;
 }
 
 @keyframes anim {
@@ -977,24 +1157,31 @@ nav ul li a:hover {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .social__media a {
     text-decoration: none;
-    color: #111111;
-    font-size: 1.25rem;
-    background-color: azure;
+    color: azure;
+    font-size: 1.5rem;
+    display: flex;
     align-items: center;
-    padding: 5px 25px;
-    border: 0;
-    border-radius: 25px;
-    cursor: pointer;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid azure;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .social__media a:hover {
-    background-color: aqua;
-    color: #007C77;
+    background-color: azure;
+    color: #111111;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
 }
 
 .footer__menu {
@@ -1048,6 +1235,11 @@ nav ul li a:hover {
 .footer__copyright p span {
     color: turquoise;
     cursor: pointer;
+}
+
+.footer__copyright p span a {
+    text-decoration: none;
+    color: aqua;
 }
 
 /* Footer CODES */
